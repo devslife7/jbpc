@@ -52,7 +52,7 @@ export default function Testimonials() {
       <div className="container">
         <div className="reviews-heading">
           <p className="eyebrow">Testimonials</p>
-          <h2 id="reviews-title">What our clients <em>are saying.</em></h2>
+          <h2 id="reviews-title">What our clients<br className="reviews-title-break" /> <em>are saying.</em></h2>
         </div>
 
         <div className="reviews-carousel">
