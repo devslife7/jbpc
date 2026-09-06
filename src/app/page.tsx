@@ -62,15 +62,54 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="services-section" id="services" aria-labelledby="services-title">
+        <section className="services-section" id="service-menu" aria-labelledby="service-menu-title">
           <div className="container">
-            <div className="services-heading"><div><p className="eyebrow">A clean for every chapter</p><h2 id="services-title">Your space. Our care.</h2></div><p>From everyday upkeep to a brand-new beginning.</p></div>
+            <div className="services-heading"><div><p className="eyebrow">A clean for every chapter</p><h2 id="service-menu-title">Your space. Our care.</h2></div><p>From everyday upkeep to a brand-new beginning.</p></div>
             <div className="service-grid">
               {services.map((service, index) => <button className="service" key={service.icon} onClick={() => showDetails(index)} aria-haspopup="dialog"><Image src={`/assets/icons/${service.icon}.svg`} alt="" width={48} height={48} /><span className="service-copy"><strong>{service.name}</strong><span>{service.note}</span></span><Arrow diagonal /></button>)}
             </div>
           </div>
         </section>
         <BeforeAfter />
+        <section className="offerings-section" id="services" aria-labelledby="services-title">
+          <div className="container">
+            <div className="offerings-heading">
+              <div>
+                <p className="eyebrow"><Sparkle /> Our services</p>
+                <h2 id="services-title">Cleaning that fits<br /><em>the way you live.</em></h2>
+              </div>
+              <p>Four ways we care for a space, from routine upkeep to a full reset. Every visit starts with a conversation and a free estimate, so the plan fits your home or office.</p>
+            </div>
+            <div className="offerings-layout">
+              <div className="offering-grid">
+                {services.map((service, index) => (
+                  <article className="offering" key={service.icon}>
+                    <div className="offering-top">
+                      <span className="offering-icon"><Image src={`/assets/icons/${service.icon}.svg`} alt="" width={48} height={48} /></span>
+                      <span className="offering-number">{String(index + 1).padStart(2, "0")}</span>
+                    </div>
+                    <h3>{service.name}</h3>
+                    <p className="offering-note">{service.note}</p>
+                    <p className="offering-description">{service.description}</p>
+                    <ul className="offering-tags">
+                      {service.details.split(" · ").map((detail) => <li key={detail}>{detail}</li>)}
+                    </ul>
+                    <a className="offering-link" href="#contact">Request a free estimate <Arrow diagonal /></a>
+                  </article>
+                ))}
+              </div>
+              <aside className="offerings-aside" aria-labelledby="offerings-aside-title">
+                <p className="eyebrow"><Sparkle /> Not sure where to start?</p>
+                <h3 id="offerings-aside-title">Tell us about your space. We’ll suggest the right clean.</h3>
+                <p>Estimates are always free, with no obligation. Call or message {business.owner.name.split(" ")[0]} and she’ll walk you through what makes sense for your home or office, in English or Spanish.</p>
+                <div className="offerings-actions">
+                  <a className="button" href={business.contact.phoneUrl}>Call {business.contact.phone}</a>
+                  <a className="offerings-whatsapp" href={business.contact.whatsappUrl} target="_blank" rel="noopener noreferrer">Message on WhatsApp <Arrow diagonal /></a>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
       </main>
 
       <dialog className="detail-dialog" ref={dialog} aria-labelledby="dialog-title" onClick={(event) => { if (event.target === event.currentTarget) dialog.current?.close(); }}>
