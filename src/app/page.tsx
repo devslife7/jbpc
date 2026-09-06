@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import BeforeAfter from "@/components/before-after";
+import ContactForm from "@/components/contact-form";
 import business from "@/content/business.json";
 import { useRef, useState } from "react";
 
@@ -36,6 +37,7 @@ export default function Home() {
             <a href="#services">Our services</a>
             <a className="work-nav-link" href="#our-work">Our work <Arrow diagonal /></a>
             <a href="#our-story">Our story</a>
+            <a href="#contact">Contact</a>
           </nav>
           <a className="button header-cta" href="#services">Find your clean <Arrow diagonal /></a>
         </div>
@@ -138,6 +140,24 @@ export default function Home() {
               <p>One-time or recurring, we’ve got you covered.</p>
               <a className="button booking-button" href={business.contact.phoneUrl}>Call for a free estimate</a>
             </div>
+          </div>
+        </section>
+        <section className="contact-section" id="contact" aria-labelledby="contact-title">
+          <div className="container contact-layout">
+            <div className="contact-copy">
+              <p className="eyebrow"><Sparkle /> Let’s get started</p>
+              <h2 id="contact-title">A cleaner space<br /><em>is one message away.</em></h2>
+              <p>Tell {business.owner.name.split(" ")[0]} a little about your space and she’ll follow up with a free estimate, in English or Spanish, whichever you prefer.</p>
+              <a className="contact-phone" href={business.contact.phoneUrl}>{business.contact.phone}</a>
+              <dl className="contact-facts">
+                <div><dt>Hours</dt><dd>{business.hours.label}</dd></div>
+                <div><dt>Service area</dt><dd>{business.serviceArea.label}</dd></div>
+                <div><dt>Languages</dt><dd>{business.languages.join(" and ")}</dd></div>
+                <div><dt>Estimates</dt><dd>Always free, no obligation</dd></div>
+              </dl>
+              <p className="contact-email">Email works too: <a href={business.contact.emailUrl}>{business.contact.email}</a></p>
+            </div>
+            <ContactForm />
           </div>
         </section>
       </main>
