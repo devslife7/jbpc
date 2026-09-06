@@ -128,6 +128,18 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <section className="booking-section" aria-labelledby="booking-title">
+          <div className="booking-banner">
+            <div className="booking-art" aria-hidden="true">
+              <Image src="/assets/booking-cleaning.png" alt="" fill sizes="(max-width: 760px) 100vw, 60vw" />
+            </div>
+            <div className="container booking-copy">
+              <h2 id="booking-title">Need a Cleaning Partner<br className="booking-title-break" /> You Can Count On?</h2>
+              <p>One-time or recurring, we’ve got you covered.</p>
+              <a className="button booking-button" href={business.contact.phoneUrl}>Call for a free estimate</a>
+            </div>
+          </div>
+        </section>
       </main>
 
       <dialog className="detail-dialog" ref={dialog} aria-labelledby="dialog-title" onClick={(event) => { if (event.target === event.currentTarget) dialog.current?.close(); }}>

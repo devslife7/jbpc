@@ -177,8 +177,38 @@ body:has(dialog[open]) { overflow: hidden; }
   .story-copy > p:not(.eyebrow) { font-size: 14px; }
 }
 
+/* Booking banner */
+.booking-section { background: var(--purple); }
+.booking-banner { position: relative; isolation: isolate; overflow: hidden; min-height: 400px; background: var(--purple); color: white; }
+.booking-art { position: absolute; inset: 0 0 0 auto; width: 58%; z-index: -1; }
+.booking-art img { object-fit: cover; object-position: center 65%; }
+.booking-art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--purple), #4b198860 20%, transparent 45%); }
+.booking-copy { position: relative; padding-block: 72px; }
+.booking-copy > * { max-width: 560px; }
+.booking-copy h2 { font-size: clamp(28px, 2.8vw, 38px); line-height: 1.22; letter-spacing: -.035em; font-weight: 600; }
+.booking-copy p { margin-block: 24px 26px; font-size: 15px; line-height: 1.7; color: #f0e6fb; }
+.booking-button { min-width: 150px; padding: 15px 28px; background: #fffefa; color: var(--purple); box-shadow: 0 4px 16px #210d3520; }
+.booking-button:hover { background: #eee3f8; transform: translateY(-2px); }
+.booking-button:focus-visible { outline-color: white; }
 @media (max-width: 760px) {
   .hero-contact { flex-wrap: wrap; gap: 6px 10px; }
+}
+@media (max-width: 1100px) {
+  .booking-copy { padding-block: 56px; }
+  .booking-copy > * { max-width: 460px; }
+  .booking-banner { min-height: 330px; }
+  .booking-art { width: 58%; }
+}
+@media (max-width: 760px) {
+  .booking-copy { padding-block: 40px 30px; }
+  .booking-copy > * { max-width: none; }
+  .booking-copy h2 { font-size: clamp(27px, 5vw, 36px); }
+  .booking-title-break { display: none; }
+  .booking-copy p { margin-block: 18px 22px; font-size: 14px; max-width: 300px; }
+  .booking-art { position: relative; width: 100%; height: clamp(230px, 55vw, 360px); margin-top: -15px; }
+  .booking-banner { display: flex; flex-direction: column-reverse; }
+  .booking-art img { object-position: center 70%; }
+  .booking-art::after { background: linear-gradient(180deg, var(--purple), transparent 40%); }
 }
 
 /* Automatic room slideshow */
