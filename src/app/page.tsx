@@ -2,14 +2,10 @@
 
 import Image from "next/image";
 import BeforeAfter from "@/components/before-after";
+import business from "@/content/business.json";
 import { useRef, useState } from "react";
 
-const services = [
-  { name: "Residential cleaning", icon: "residential-cleaning", note: "A home that feels like home.", description: "A fresh reset for your everyday spaces. From the kitchen to the living room, give your home the attention it deserves.", details: "Living spaces · Kitchens · Bathrooms · Bedrooms" },
-  { name: "Deep cleaning", icon: "deep-cleaning", note: "A little extra attention.", description: "For the corners, details, and hard-to-reach places that need a little more care. Make room for a thoroughly fresh start.", details: "Detailed surfaces · Built-up grime · Overlooked corners" },
-  { name: "Move-in & move-out", icon: "move-in-out-cleaning", note: "A clean slate for what’s next.", description: "Close one chapter and begin another with a refreshed space. Cleaning for an empty home, before you settle in or after you move out.", details: "Empty homes · Kitchens & bathrooms · Final refresh" },
-  { name: "Office cleaning", icon: "office-cleaning", note: "Fresh spaces. Clear minds.", description: "A welcoming workspace starts with the details. Bring a fresh feel to the shared spaces where your team spends its day.", details: "Workspaces · Common areas · Break rooms" },
-];
+const services = business.services;
 
 function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={diagonal ? "M6 18 18 6M6 6h12v12" : "M4 12h15m-6-6 6 6-6 6"} stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>;
@@ -33,8 +29,8 @@ export default function Home() {
       <a className="skip-link" href="#main">Skip to content</a>
       <header className="site-header">
         <div className="container header-inner">
-          <a className="brand" href="#" aria-label="J&B Premier Cleaning — home">
-            <Image src="/assets/logo-horizontal.svg" alt="J&B Premier Cleaning LLC" width={1740} height={510} preload />
+          <a className="brand" href="#" aria-label={`${business.name} — home`}>
+            <Image src="/assets/logo-horizontal.svg" alt={business.legalName} width={1740} height={510} preload />
           </a>
           <nav className="desktop-nav" aria-label="Main navigation">
             <a href="#services">Our services</a>
@@ -81,7 +77,7 @@ export default function Home() {
         <div className="dialog-content">
           <button className="close-button" aria-label="Close details" onClick={() => dialog.current?.close()}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg></button>
           <Image src={`/assets/icons/${services[activeService].icon}.svg`} alt="" width={64} height={64} />
-          <p className="eyebrow">J&B Premier Cleaning</p>
+          <p className="eyebrow">{business.name}</p>
           <h2 id="dialog-title">{services[activeService].name}</h2>
           <p className="dialog-description">{services[activeService].description}</p>
           <p className="service-details">{services[activeService].details}</p>

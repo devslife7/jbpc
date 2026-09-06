@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import business from "@/content/business.json";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -13,9 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "J&B Premier Cleaning | A cleaner home. A lighter life.",
-  description:
-    "A fresh space. A fresh start. Explore residential, deep, move-in and move-out, and office cleaning with J&B Premier Cleaning LLC.",
+  title: `${business.name} | ${business.tagline}`,
+  description: business.description,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
