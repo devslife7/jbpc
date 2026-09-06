@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Deep cleaning</title>
+  <desc id="desc">A magnifying glass inspecting a sparkle</desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="27" cy="27" r="16" stroke="#4A1989" stroke-width="3"/>
+    <path d="m39 39 15 15" stroke="#4A1989" stroke-width="4"/>
+    <path d="M27 17c0 6.7-3.3 10-10 10 6.7 0 10 3.3 10 10 0-6.7 3.3-10 10-10-6.7 0-10-3.3-10-10Z" fill="#8549EF" stroke="#8549EF" stroke-width="1.5"/>
+  </g>
+</svg>

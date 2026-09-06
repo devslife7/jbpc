@@ -1,69 +1,93 @@
+"use client";
+
 import Image from "next/image";
+import BeforeAfter from "@/components/before-after";
+import { useRef, useState } from "react";
+
+const services = [
+  { name: "Residential cleaning", icon: "residential-cleaning", note: "A home that feels like home.", description: "A fresh reset for your everyday spaces. From the kitchen to the living room, give your home the attention it deserves.", details: "Living spaces · Kitchens · Bathrooms · Bedrooms" },
+  { name: "Deep cleaning", icon: "deep-cleaning", note: "A little extra attention.", description: "For the corners, details, and hard-to-reach places that need a little more care. Make room for a thoroughly fresh start.", details: "Detailed surfaces · Built-up grime · Overlooked corners" },
+  { name: "Move-in & move-out", icon: "move-in-out-cleaning", note: "A clean slate for what’s next.", description: "Close one chapter and begin another with a refreshed space. Cleaning for an empty home, before you settle in or after you move out.", details: "Empty homes · Kitchens & bathrooms · Final refresh" },
+  { name: "Office cleaning", icon: "office-cleaning", note: "Fresh spaces. Clear minds.", description: "A welcoming workspace starts with the details. Bring a fresh feel to the shared spaces where your team spends its day.", details: "Workspaces · Common areas · Break rooms" },
+];
+
+function Arrow({ diagonal = false }: { diagonal?: boolean }) {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={diagonal ? "M6 18 18 6M6 6h12v12" : "M4 12h15m-6-6 6 6-6 6"} stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
+
+function Sparkle({ className = "" }: { className?: string }) {
+  return <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2c0 7-3 10-10 10 7 0 10 3 10 10 0-7 3-10 10-10-7 0-10-3-10-10Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" /></svg>;
+}
 
 export default function Home() {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const [activeService, setActiveService] = useState(0);
+
+  function showDetails(service: number) {
+    setActiveService(service);
+    dialog.current?.showModal();
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
+    <>
+      <a className="skip-link" href="#main">Skip to content</a>
+      <header className="site-header">
+        <div className="container header-inner">
+          <a className="brand" href="#" aria-label="J&B Premier Cleaning — home">
+            <Image src="/assets/logo-horizontal.svg" alt="J&B Premier Cleaning LLC" width={1740} height={510} preload />
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          <nav className="desktop-nav" aria-label="Main navigation">
+            <a href="#services">Our services</a>
+            <a className="work-nav-link" href="#our-work">Our work <Arrow diagonal /></a>
+          </nav>
+          <a className="button header-cta" href="#services">Find your clean <Arrow diagonal /></a>
         </div>
+      </header>
+
+      <main id="main">
+        <section className="hero" aria-labelledby="hero-title">
+          <div className="hero-photo">
+            <Image src="/assets/hero-cleaning-branded.png" alt="A smiling cleaner looking at the camera, wearing a purple polo with the J&B Premier Cleaning logo on her left chest while wiping a kitchen countertop" fill sizes="100vw" preload />
+          </div>
+          <div className="hero-wash" />
+          <div className="container hero-inner">
+            <div className="hero-copy">
+              <p className="eyebrow"><Sparkle /> A fresh space. A fresh start.</p>
+              <h1 id="hero-title">A cleaner home.<br /><em>A lighter life.</em></h1>
+              <p className="hero-description">Leave the cleaning to us. Come home to a space that feels fresh, cared for, and completely yours.</p>
+              <div className="hero-actions">
+                <a className="button primary-button" href="#services">Explore our services <Arrow /></a>
+                <a className="text-button" href="#our-work">See the difference <span className="play-icon" aria-hidden="true"><svg width="10" height="12" viewBox="0 0 10 12"><path d="m1 1 8 5-8 5Z" fill="currentColor" /></svg></span></a>
+              </div>
+              <div className="care-note"><span className="check-icon" aria-hidden="true">✓</span> Thoughtful cleaning. A personal touch.</div>
+            </div>
+            <div className="photo-note"><span className="note-sparkle"><Sparkle /></span><span>A little more sparkle.<br /><strong>A lot more peace of mind.</strong></span></div>
+            <span className="image-caption">THE J&B PREMIER TOUCH</span>
+          </div>
+        </section>
+
+        <section className="services-section" id="services" aria-labelledby="services-title">
+          <div className="container">
+            <div className="services-heading"><div><p className="eyebrow">A clean for every chapter</p><h2 id="services-title">Your space. Our care.</h2></div><p>From everyday upkeep to a brand-new beginning.</p></div>
+            <div className="service-grid">
+              {services.map((service, index) => <button className="service" key={service.icon} onClick={() => showDetails(index)} aria-haspopup="dialog"><Image src={`/assets/icons/${service.icon}.svg`} alt="" width={48} height={48} /><span className="service-copy"><strong>{service.name}</strong><span>{service.note}</span></span><Arrow diagonal /></button>)}
+            </div>
+          </div>
+        </section>
+        <BeforeAfter />
       </main>
-    </div>
+
+      <dialog className="detail-dialog" ref={dialog} aria-labelledby="dialog-title" onClick={(event) => { if (event.target === event.currentTarget) dialog.current?.close(); }}>
+        <div className="dialog-content">
+          <button className="close-button" aria-label="Close details" onClick={() => dialog.current?.close()}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg></button>
+          <Image src={`/assets/icons/${services[activeService].icon}.svg`} alt="" width={64} height={64} />
+          <p className="eyebrow">J&B Premier Cleaning</p>
+          <h2 id="dialog-title">{services[activeService].name}</h2>
+          <p className="dialog-description">{services[activeService].description}</p>
+          <p className="service-details">{services[activeService].details}</p>
+          <a className="button primary-button" href="#our-work" onClick={() => dialog.current?.close()}>See the difference <Arrow /></a>
+        </div>
+      </dialog>
+    </>
   );
 }

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Residential cleaning</title>
+  <desc id="desc">A house with a cleaning sparkle</desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 30 32 10l24 20" stroke="#4A1989" stroke-width="3"/>
+    <path d="M13 27v25h38V27M25 52V37h14v15" stroke="#4A1989" stroke-width="3"/>
+    <path d="M48 10c0 5-2.5 7.5-7.5 7.5 5 0 7.5 2.5 7.5 7.5 0-5 2.5-7.5 7.5-7.5-5 0-7.5-2.5-7.5-7.5Z" fill="#8549EF" stroke="#8549EF" stroke-width="1.5"/>
+  </g>
+</svg>

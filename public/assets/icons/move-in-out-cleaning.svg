@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Move-in and move-out cleaning</title>
+  <desc id="desc">A moving box with directional arrows</desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 24h32v29H16zM16 24l7-11h18l7 11M32 13v40" stroke="#4A1989" stroke-width="3"/>
+    <path d="m9 18-5 5 5 5M4 23h11M55 36l5 5-5 5M60 41H49" stroke="#8549EF" stroke-width="3"/>
+  </g>
+</svg>

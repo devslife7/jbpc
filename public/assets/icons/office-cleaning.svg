@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Office cleaning</title>
+  <desc id="desc">An office building with a cleaning sparkle</desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 54V12h30v42M42 27h10v27M7 54h50" stroke="#4A1989" stroke-width="3"/>
+    <path d="M20 21h5M31 21h4M20 30h5M31 30h4M20 39h5M31 39h4M27 54v-7h7v7" stroke="#4A1989" stroke-width="3"/>
+    <path d="M51 8c0 4-2 6-6 6 4 0 6 2 6 6 0-4 2-6 6-6-4 0-6-2-6-6Z" fill="#8549EF" stroke="#8549EF" stroke-width="1.25"/>
+  </g>
+</svg>
