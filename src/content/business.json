@@ -100,6 +100,50 @@
     ],
     "signoff": "Honest people. Hard work. A personal touch."
   },
+  "reviews": [
+    {
+      "name": "Jessica T.",
+      "role": "Homeowner",
+      "service": "Residential cleaning",
+      "quote": "Amazing service! My house has never been cleaner. The team is friendly, careful with our things, and very professional.",
+      "rating": 5
+    },
+    {
+      "name": "Daniel R.",
+      "role": "Office manager",
+      "service": "Office cleaning",
+      "quote": "Our office looks brand new every week. Highly reliable and great attention to detail, and the team works around our schedule.",
+      "rating": 5
+    },
+    {
+      "name": "Sarah M.",
+      "role": "Business owner",
+      "service": "Office cleaning",
+      "quote": "They exceeded our expectations. Bertha is easy to reach, the estimate was clear, and the results speak for themselves. Worth every penny!",
+      "rating": 5
+    },
+    {
+      "name": "Marcus L.",
+      "role": "Homeowner",
+      "service": "Deep cleaning",
+      "quote": "The deep clean got into corners I had given up on. Baseboards, grout, behind the appliances. It felt like moving into a new home.",
+      "rating": 5
+    },
+    {
+      "name": "Priya N.",
+      "role": "Renter",
+      "service": "Move-in & move-out",
+      "quote": "We booked a move-out clean and got our full deposit back. The kitchen and bathrooms were spotless. Communication was quick and friendly.",
+      "rating": 5
+    },
+    {
+      "name": "Elena G.",
+      "role": "Homeowner",
+      "service": "Residential cleaning",
+      "quote": "We’ve had recurring visits for months now. Same careful work every time, and they always leave the house smelling fresh. Highly recommend.",
+      "rating": 5
+    }
+  ],
   "notes": {
     "confirmed": [
       "Owner: Bertha Blanco.",
@@ -114,7 +158,8 @@
       "Business name and LLC suffix retained from the existing site; confirm the exact legal name.",
       "Service offerings and descriptions retained from the existing site as provisional copy.",
       "Description, owner bio, and story wording are draft marketing copy.",
-      "Recurring service availability mentioned on the existing site remains unconfirmed."
+      "Recurring service availability mentioned on the existing site remains unconfirmed.",
+      "Reviews are placeholder testimonials modeled on the design reference, with placeholder names; replace with real client reviews (with permission) before launch."
     ],
     "pending": [
       "Instagram and Facebook URLs.",

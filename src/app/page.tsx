@@ -3,6 +3,7 @@
 import Image from "next/image";
 import BeforeAfter from "@/components/before-after";
 import ContactForm from "@/components/contact-form";
+import Testimonials from "@/components/testimonials";
 import business from "@/content/business.json";
 import { useRef, useState } from "react";
 
@@ -130,6 +131,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <Testimonials />
         <section className="booking-section" aria-labelledby="booking-title">
           <div className="booking-banner">
             <div className="booking-art" aria-hidden="true">

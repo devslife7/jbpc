@@ -177,6 +177,52 @@ body:has(dialog[open]) { overflow: hidden; }
   .story-copy > p:not(.eyebrow) { font-size: 14px; }
 }
 
+/* Reviews */
+.reviews-section { padding-block: 84px 88px; border-top: 1px solid #f1ebf5; background: linear-gradient(#faf7fdf2, #faf7fdf2), url("/assets/background-texture.png") center / 720px; }
+.reviews-heading { text-align: center; margin-bottom: 44px; }
+.reviews-heading .eyebrow { justify-content: center; margin-bottom: 18px; }
+.reviews-heading h2 { font-size: clamp(34px, 3.4vw, 46px); line-height: 1.15; letter-spacing: -.05em; font-weight: 500; }
+.reviews-heading h2 em { font-family: Georgia, 'Times New Roman', serif; color: var(--purple); font-weight: 400; }
+.reviews-carousel { --gap: 22px; --per-page: 3; display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; grid-template-areas: "prev track next" ". dots ."; column-gap: 20px; row-gap: 30px; align-items: center; }
+.reviews-track { grid-area: track; display: flex; gap: var(--gap); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; padding-block: 10px; margin-block: -10px; }
+.reviews-track::-webkit-scrollbar { display: none; }
+.reviews-track:focus-visible { outline-offset: 12px; border-radius: 16px; }
+.review { flex: 0 0 calc((100% - var(--gap) * (var(--per-page) - 1)) / var(--per-page)); scroll-snap-align: start; display: flex; flex-direction: column; margin: 0; padding: 30px 30px 28px; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 6px 24px #32202a08; transition: transform .25s, box-shadow .25s, border-color .25s; }
+.review:hover { transform: translateY(-4px); border-color: #d6c5e6; box-shadow: 0 18px 40px #4b198814; }
+.review-mark { display: block; margin-bottom: 10px; font-family: Georgia, 'Times New Roman', serif; font-size: 44px; line-height: .7; color: var(--purple); }
+.review blockquote { margin: 0; color: #4a434f; font-size: 15px; line-height: 1.8; }
+.review figcaption { display: flex; align-items: center; gap: 14px; margin-top: auto; padding-top: 26px; }
+.review-avatar { flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(160deg, #ede3f6, #d7c4ea); color: var(--purple); font-size: 13px; font-weight: 650; letter-spacing: .04em; }
+.review-author { display: flex; flex-direction: column; gap: 2px; font-size: 12px; color: var(--muted); }
+.review-author strong { font-size: 14px; font-weight: 600; color: var(--foreground); }
+.review-stars { display: flex; gap: 3px; margin-top: 18px; color: #e9a825; }
+.reviews-arrow { width: 44px; height: 44px; border: 1px solid #d6c5e6; border-radius: 50%; background: #fff; color: var(--purple); display: grid; place-items: center; box-shadow: 0 4px 12px #4b198812; }
+.reviews-arrow:first-of-type { grid-area: prev; }
+.reviews-arrow:last-of-type { grid-area: next; }
+.reviews-arrow:hover:not(:disabled) { background: #f5effb; transform: translateY(-2px); }
+.reviews-arrow:disabled { cursor: default; opacity: .35; box-shadow: none; }
+.reviews-dots { grid-area: dots; display: flex; justify-content: center; gap: 12px; }
+.reviews-dot { width: 24px; height: 24px; padding: 0; border: 0; border-radius: 50%; background: none; display: grid; place-items: center; }
+.reviews-dot::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #cfc6d6; transition: background .2s, transform .2s; }
+.reviews-dot:hover::before { background: #a98bc6; }
+.reviews-dot.is-active::before { background: var(--purple); transform: scale(1.25); }
+@media (prefers-reduced-motion: reduce) {
+  .reviews-track { scroll-behavior: auto; }
+  .review, .review:hover { transform: none; }
+}
+@media (max-width: 1100px) {
+  .reviews-section { padding-block: 64px; }
+  .reviews-carousel { --per-page: 2; }
+}
+@media (max-width: 760px) {
+  .reviews-section { padding-block: 48px; }
+  .reviews-heading { margin-bottom: 28px; }
+  .reviews-heading h2 { font-size: clamp(32px, 8vw, 42px); }
+  .reviews-carousel { --per-page: 1; --gap: 16px; grid-template-columns: 44px minmax(0, 1fr) 44px; grid-template-areas: "track track track" "prev dots next"; row-gap: 22px; }
+  .review { padding: 24px 22px 22px; border-radius: 12px; }
+  .review blockquote { font-size: 14px; }
+}
+
 /* Booking banner */
 .booking-section { background: var(--purple); }
 .booking-banner { position: relative; isolation: isolate; overflow: hidden; min-height: 400px; background: var(--purple); color: white; }
