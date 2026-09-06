@@ -35,6 +35,7 @@ export default function Home() {
           <nav className="desktop-nav" aria-label="Main navigation">
             <a href="#services">Our services</a>
             <a className="work-nav-link" href="#our-work">Our work <Arrow diagonal /></a>
+            <a href="#our-story">Our story</a>
           </nav>
           <a className="button header-cta" href="#services">Find your clean <Arrow diagonal /></a>
         </div>
@@ -107,6 +108,23 @@ export default function Home() {
                   <a className="offerings-whatsapp" href={business.contact.whatsappUrl} target="_blank" rel="noopener noreferrer">Message on WhatsApp <Arrow diagonal /></a>
                 </div>
               </aside>
+            </div>
+          </div>
+        </section>
+        <section className="story-section" id="our-story" aria-labelledby="story-title">
+          <div className="container story-layout">
+            <div className="story-photo">
+              <span className="story-dots story-dots-top" aria-hidden="true" />
+              <span className="story-dots story-dots-bottom" aria-hidden="true" />
+              <div className="story-blob">
+                <Image src="/assets/cleaning-lady-hero.png" alt="A smiling J&B Premier Cleaning professional holding a cleaning caddy and supplies" fill sizes="(max-width: 760px) 100vw, 550px" />
+              </div>
+            </div>
+            <div className="story-copy">
+              <p className="eyebrow"><Sparkle /> Our story</p>
+              <h2 id="story-title">Built on honest work.<br /><em>Grown with care.</em></h2>
+              {business.story.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              <div className="story-signoff"><Sparkle /><span>{business.story.signoff}</span></div>
             </div>
           </div>
         </section>
