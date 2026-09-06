@@ -48,13 +48,13 @@ export default function Home() {
           <div className="hero-wash" />
           <div className="container hero-inner">
             <div className="hero-copy">
-              <p className="eyebrow"><Sparkle /> A fresh space. A fresh start.</p>
               <h1 id="hero-title">A cleaner home.<br /><em>A lighter life.</em></h1>
               <p className="hero-description">Leave the cleaning to us. Come home to a space that feels fresh, cared for, and completely yours.</p>
               <div className="hero-actions">
                 <a className="button primary-button" href="#services">Explore our services <Arrow /></a>
                 <a className="text-button" href="#our-work">See the difference <span className="play-icon" aria-hidden="true"><svg width="10" height="12" viewBox="0 0 10 12"><path d="m1 1 8 5-8 5Z" fill="currentColor" /></svg></span></a>
               </div>
+              <div className="hero-contact"><a href={business.contact.phoneUrl}>{business.contact.phone}</a><span>Free estimates · Call or WhatsApp</span></div>
               <div className="care-note"><span className="check-icon" aria-hidden="true">✓</span> Thoughtful cleaning. A personal touch.</div>
             </div>
             <div className="photo-note"><span className="note-sparkle"><Sparkle /></span><span>A little more sparkle.<br /><strong>A lot more peace of mind.</strong></span></div>
