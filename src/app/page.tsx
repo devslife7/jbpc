@@ -162,6 +162,30 @@ export default function Home() {
         </section>
       </main>
 
+      <footer className="site-footer">
+        <div className="container footer-main">
+          <div className="footer-brand">
+            <a className="footer-logo" href="#" aria-label="J&B Premier Cleaning — home">
+              <Image src="/assets/logo-horizontal.svg" alt="J&B Premier Cleaning LLC" width={1740} height={510} />
+            </a>
+            <p>Thoughtful cleaning for the spaces that matter most.</p>
+          </div>
+          <nav className="footer-nav" aria-label="Footer navigation">
+            <a href="#services">Our services</a>
+            <a href="#our-work">Our work</a>
+            <a href="#our-story">Our story</a>
+          </nav>
+          <div className="footer-action">
+            <p>Ready for a fresh start?</p>
+            <a className="button footer-button" href="#services">Book your clean <Arrow diagonal /></a>
+          </div>
+        </div>
+        <div className="container footer-bottom">
+          <span>© {new Date().getFullYear()} J&amp;B Premier Cleaning LLC</span>
+          <span>Clean spaces. Clear minds.</span>
+        </div>
+      </footer>
+
       <dialog className="detail-dialog" ref={dialog} aria-labelledby="dialog-title" onClick={(event) => { if (event.target === event.currentTarget) dialog.current?.close(); }}>
         <div className="dialog-content">
           <button className="close-button" aria-label="Close details" onClick={() => dialog.current?.close()}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg></button>
