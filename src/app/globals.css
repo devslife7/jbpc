@@ -337,6 +337,8 @@ button, a { transition: color .2s, background .2s, transform .2s, box-shadow .2s
 .form-actions p { max-width: 400px; font-size: 13px; line-height: 1.65; color: #857c8b; }
 .form-actions p a { color: var(--purple); font-weight: 600; white-space: nowrap; }
 .form-actions p a:hover { text-decoration: underline; }
+.form-actions .turnstile-slot { min-height: 65px; max-width: 400px; }
+.form-actions .turnstile-slot:empty { border: 1px dashed #d5c9e0; border-radius: 8px; }
 .form-actions .form-status { margin: 0; color: #8a2a3a; font-weight: 600; }
 .form-actions .form-status:empty { display: none; }
 /* Honeypot field: parked off-screen so people never see it, but bots that fill every input will. */

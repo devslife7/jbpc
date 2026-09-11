@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import business from "@/content/business.json";
+import Turnstile, { type TurnstileHandle } from "@/components/turnstile";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 const services = business.services;
@@ -45,6 +46,11 @@ function looksLikeGibberish(text: string) {
   return vowels / letters.length < 0.15;
 }
 
+// Turnstile flow: the widget hands us a token, we confirm it with Cloudflare
+// through our own API route (which holds the secret key), and only a passed
+// verification lets the message go out.
+type Verification = "idle" | "checking" | "passed" | "failed";
+
 function WhatsAppIcon() {
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" /><path d="M9.2 8.4c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.1.2-.2.3 0 .5a6.6 6.6 0 0 0 3 2.6c.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.6.8c.3.1.4.2.4.4a2 2 0 0 1-1.6 2c-.6.1-1.3 0-2.2-.4a9.4 9.4 0 0 1-4.4-3.9c-.7-1.1-.8-2-.6-2.7.1-.5.3-.9.2-1.2Z" fill="currentColor" /></svg>;
 }
@@ -60,6 +66,31 @@ export default function ContactForm() {
   const [message, setMessage] = useState("");
   const [chosenMethod, setChosenMethod] = useState<ContactMethod | null>(null);
   const [honeypot, setHoneypot] = useState("");
+  const [verification, setVerification] = useState<Verification>("idle");
+  const turnstile = useRef<TurnstileHandle>(null);
+  const latestToken = useRef<string | null>(null);
+
+  async function verifyToken(token: string | null) {
+    latestToken.current = token;
+    if (!token) {
+      setVerification("idle");
+      return;
+    }
+    setVerification("checking");
+    try {
+      const response = await fetch("/api/turnstile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token }),
+      });
+      const data = (await response.json()) as { success?: boolean };
+      // Ignore a stale answer if the widget has since issued a newer token.
+      if (latestToken.current !== token) return;
+      setVerification(data.success ? "passed" : "failed");
+    } catch {
+      if (latestToken.current === token) setVerification("failed");
+    }
+  }
   const [status, setStatus] = useState<string | null>(null);
   const openedAt = useRef<number | null>(null);
   const humanInteractions = useRef(0);
@@ -89,7 +120,12 @@ export default function ContactForm() {
       return "That was quick! Give your message a once-over, then tap send again.";
     }
 
-    // 4. Content: link dumps, gibberish, and oversized messages are classic spam.
+    // 4. Cloudflare Turnstile: the browser has to pass Cloudflare's bot check.
+    if (verification === "checking") return "One moment, the security check is finishing. Then tap send again.";
+    if (verification === "failed") return "The security check didn't pass. Please refresh the page and try again.";
+    if (verification !== "passed") return "Please complete the security check above, then tap send again.";
+
+    // 5. Content: link dumps, gibberish, and oversized messages are classic spam.
     const cleanName = name.trim();
     if (!/[a-z\u00C0-\u024F]/i.test(cleanName) || countLinks(cleanName) > 0 || countLinks(location) > 0) {
       return "Please enter your name without links or symbols.";
@@ -131,6 +167,8 @@ export default function ContactForm() {
     }
     setStatus(null);
     const body = encodeURIComponent(composeMessage());
+    // Turnstile tokens are single-use; get a fresh one for any follow-up send.
+    turnstile.current?.reset();
     if (method === "whatsapp") {
       window.open(`${business.contact.whatsappUrl}?text=${body}`, "_blank", "noopener,noreferrer");
     } else if (method === "email") {
@@ -191,6 +229,7 @@ export default function ContactForm() {
             {methodOrder.map((option) => <option key={option} value={option}>{contactMethods[option].label}</option>)}
           </select>
         </div>
+        <Turnstile ref={turnstile} onToken={verifyToken} className="turnstile-slot" />
         <button className="button primary-button" type="submit">{method === "whatsapp" && <WhatsAppIcon />} {contactMethods[method].button} <Arrow /></button>
         <p className="form-status" role="status" aria-live="polite">{status}</p>
         <p id="contact-send-hint">{contactMethods[method].hint} Nothing is sent until you tap send. Prefer to talk? <a href={business.contact.phoneUrl}>Call {business.contact.phone}</a>.</p>
