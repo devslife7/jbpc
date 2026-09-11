@@ -5,9 +5,14 @@ import BeforeAfter from "@/components/before-after";
 import ContactForm from "@/components/contact-form";
 import Testimonials from "@/components/testimonials";
 import business from "@/content/business.json";
-import { useRef, useState } from "react";
+import { useRef, useState, type MouseEvent } from "react";
 
 const services = business.services;
+
+function focusContactName(event: MouseEvent<HTMLAnchorElement>) {
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  document.getElementById("contact-name")?.focus({ preventScroll: true });
+}
 
 function Arrow({ diagonal = false }: { diagonal?: boolean }) {
   return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d={diagonal ? "M6 18 18 6M6 6h12v12" : "M4 12h15m-6-6 6 6-6 6"} stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>;
@@ -40,7 +45,7 @@ export default function Home() {
             <a href="#our-story">Our story</a>
             <a href="#contact">Contact</a>
           </nav>
-          <a className="button header-cta" href="#services">Find your clean <Arrow diagonal /></a>
+          <a className="button header-cta" href="#contact-name" onClick={focusContactName}>Book now <Arrow diagonal /></a>
         </div>
       </header>
 
@@ -55,7 +60,7 @@ export default function Home() {
               <h1 id="hero-title">A cleaner home.<br /><em>A lighter life.</em></h1>
               <p className="hero-description">Leave the cleaning to us. Come home to a space that feels fresh, cared for, and completely yours.</p>
               <div className="hero-actions">
-                <a className="button primary-button" href="#services">Explore our services <Arrow /></a>
+                <a className="button primary-button" href="#contact-name" onClick={focusContactName}>Book now <Arrow /></a>
                 <a className="text-button" href="#our-work">See the difference <span className="play-icon" aria-hidden="true"><svg width="10" height="12" viewBox="0 0 10 12"><path d="m1 1 8 5-8 5Z" fill="currentColor" /></svg></span></a>
               </div>
               <div className="hero-contact"><a href={business.contact.phoneUrl}>{business.contact.phone}</a><span>Free estimates · Call or WhatsApp</span></div>
