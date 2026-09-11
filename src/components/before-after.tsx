@@ -62,7 +62,7 @@ export default function BeforeAfter() {
   return (
     <section className="work-section" id="our-work" aria-labelledby="work-title">
       <div className="container">
-        <div className="work-heading">
+        <div className="work-heading" data-reveal>
           <div>
             <p className="eyebrow"><span aria-hidden="true">✧</span> Before & after</p>
             <h2 id="work-title">The difference is<br /><em>in the details.</em></h2>
@@ -70,7 +70,7 @@ export default function BeforeAfter() {
           <p>A little attention goes a long way. Take a closer look at what a fresh start can feel like, one room at a time.</p>
         </div>
 
-        <div className="room-controls">
+        <div className="room-controls" data-reveal>
         <div className="room-selectors" role="group" aria-label="Choose a room to compare" onFocusCapture={() => setPaused(true)}>
           {rooms.map((item, index) => (
             <button
@@ -98,7 +98,7 @@ export default function BeforeAfter() {
         </button>
         </div>
 
-        <figure id="room-comparison" className="room-comparison">
+        <figure id="room-comparison" className="room-comparison" data-reveal>
           <div className="work-image-wrap">
             {rooms.map((item, index) => <Image
               key={item.name}
@@ -120,7 +120,7 @@ export default function BeforeAfter() {
           </figcaption>
         </figure>
 
-        <div className="work-footer">
+        <div className="work-footer" data-reveal>
           <p>Your home could be next.</p>
           <a href="#services">Find the right clean for your space <span aria-hidden="true">↗</span></a>
         </div>

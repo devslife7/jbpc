@@ -50,12 +50,12 @@ export default function Testimonials() {
   return (
     <section className="reviews-section" id="reviews" aria-labelledby="reviews-title">
       <div className="container">
-        <div className="reviews-heading">
+        <div className="reviews-heading" data-reveal>
           <p className="eyebrow">Testimonials</p>
           <h2 id="reviews-title">What our clients<br className="reviews-title-break" /> <em>are saying.</em></h2>
         </div>
 
-        <div className="reviews-carousel">
+        <div className="reviews-carousel" data-reveal>
           <button className="reviews-arrow" onClick={() => goTo(page - 1)} disabled={page === 0} aria-label="Previous reviews"><Chevron back /></button>
           <div className="reviews-track" ref={track} onScroll={measure} role="region" aria-label="Client reviews" tabIndex={0}>
             {reviews.map((review) => (
