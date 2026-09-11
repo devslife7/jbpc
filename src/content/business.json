@@ -68,35 +68,50 @@
       "icon": "residential-cleaning",
       "note": "A home that feels like home.",
       "description": "A fresh reset for your everyday spaces. From the kitchen to the living room, give your home the attention it deserves.",
-      "details": "Living spaces · Kitchens · Bathrooms · Bedrooms"
+      "details": "Living spaces · Kitchens · Bathrooms · Bedrooms",
+      "image": {
+        "src": "/assets/services/residential-photo.webp",
+        "alt": "A cleaner wiping a kitchen countertop in a bright home."
+      }
     },
     {
       "name": "Deep cleaning",
       "icon": "deep-cleaning",
       "note": "A little extra attention.",
       "description": "For the corners, details, and hard-to-reach places that need a little more care. Make room for a thoroughly fresh start.",
-      "details": "Detailed surfaces · Built-up grime · Overlooked corners"
+      "details": "Detailed surfaces · Built-up grime · Overlooked corners",
+      "image": {
+        "src": "/assets/services/deep-clean-photo.webp",
+        "alt": "Clean bathroom tile, glass shower doors, and a polished vanity."
+      }
     },
     {
       "name": "Move-in & move-out",
       "icon": "move-in-out-cleaning",
       "note": "A clean slate for what’s next.",
       "description": "Close one chapter and begin another with a refreshed space. Cleaning for an empty home, before you settle in or after you move out.",
-      "details": "Empty homes · Kitchens & bathrooms · Final refresh"
+      "details": "Empty homes · Kitchens & bathrooms · Final refresh",
+      "image": {
+        "src": "/assets/services/move-photo.webp",
+        "alt": "An empty home with clean wood floors and moving boxes, ready for new occupants."
+      }
     },
     {
       "name": "Office cleaning",
       "icon": "office-cleaning",
       "note": "Fresh spaces. Clear minds.",
       "description": "A welcoming workspace starts with the details. Bring a fresh feel to the shared spaces where your team spends its day.",
-      "details": "Workspaces · Common areas · Break rooms"
+      "details": "Workspaces · Common areas · Break rooms",
+      "image": {
+        "src": "/assets/services/office-photo.webp",
+        "alt": "A tidy office with clean desks, wood floors, and a glass meeting room."
+      }
     }
   ],
   "story": {
     "paragraphs": [
-      "Owned by Bertha Blanco, J&B Premier Cleaning has been running for over 30 years. We serve the DMV area within 50 miles of Northern Virginia, with service in English and Spanish.",
-      "Starting a business takes initiative, patience, and a willingness to roll up your sleeves. We bring that same mindset into every space we clean — showing up ready to work, paying attention to the details, and taking pride in a job done well.",
-      "We know inviting someone into your home is personal. That’s why we value clear communication, respect for your space, and earning your trust with every visit. A cleaner home is our work. Helping you feel cared for is what makes it meaningful."
+      "Owned by Bertha Blanco, J&B Premier Cleaning brings over 30 years in business to homes and offices across the DMV, within 50 miles of Northern Virginia.",
+      "We care for your space with attention to detail, clear communication, and a personal touch — with service in English and Spanish."
     ],
     "signoff": "Honest people. Hard work. A personal touch."
   },

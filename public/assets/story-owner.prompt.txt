@@ -1,0 +1,7 @@
+Created using the built-in image generation tool.
+
+Portrait prompt:
+Use case: identity-preserve. Edit target: second input image, the website's standalone cleaning professional portrait. Identity reference: first input image, the woman standing behind a birthday cake. Replace the existing person with the woman from the first photo, faithfully preserving her recognizable face, age, warm smile, skin tone, shoulder-length highlighted light-brown hair and natural fuller body proportions. Dress her in the existing purple J&B Premier Cleaning crew-neck work T-shirt and dark pants, holding the gray cleaning caddy with spray bottles, purple cloth and brush in the same pose and framing as the second image. Photorealistic, natural studio lighting. Portrait head to upper thighs, centered, entire hair and arms visible. Keep the small white company chest logo as in the target. Output only the isolated person and caddy on a genuinely transparent alpha background, no checkerboard pixels, no birthday cake, decorations, text layout or website background. Match target aspect ratio approximately 4:5.
+
+Final background refinement:
+Edit only the background of this portrait. Preserve the woman, her exact face, hair, clothing, logo, hands, cleaning caddy and composition unchanged. Replace ALL of the gray/white checkerboard with a smooth pale lavender studio background (#e5d8ef), without any checks, texture, scenery or patterns. The result will sit inside an existing rounded lavender website frame. Do not alter the person at all.
