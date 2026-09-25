@@ -3,6 +3,14 @@
   "legalName": "J&B Premier Cleaning LLC",
   "tagline": "A cleaner home. A lighter life.",
   "description": "Owner-led cleaning for homes and offices in the DMV area. Contact Bertha Blanco for a free estimate, with service in English and Spanish.",
+  "site": {
+    "url": "https://www.jb-premier-cleaning.com",
+    "defaultLocale": "en",
+    "locales": [
+      "en",
+      "es"
+    ]
+  },
   "owner": {
     "name": "Bertha Blanco",
     "role": "Owner",
@@ -37,7 +45,14 @@
     "region": "Washington, DC, Maryland, and Virginia",
     "baseRegion": "Northern Virginia",
     "radiusMiles": 50,
-    "note": "Contact Bertha to confirm availability at your address."
+    "note": "Contact Bertha to confirm availability at your address.",
+    "geoMidpoint": {
+      "latitude": 38.8462,
+      "longitude": -77.3064,
+      "approximate": true,
+      "note": "City of Fairfax used as an approximate center of Northern Virginia for structured data; the exact radius origin is pending."
+    },
+    "radiusMeters": 80467
   },
   "languages": [
     "English",
@@ -62,9 +77,14 @@
     "label": "Free estimates",
     "description": "Call or WhatsApp Bertha to discuss your space and request a free estimate."
   },
+  "scheduling": {
+    "recurring": null,
+    "label": "One-time visits or a schedule that fits you. Ask Bertha."
+  },
   "services": [
     {
       "name": "Residential cleaning",
+      "slug": "house-cleaning",
       "icon": "residential-cleaning",
       "note": "A home that feels like home.",
       "description": "A fresh reset for your everyday spaces. From the kitchen to the living room, give your home the attention it deserves.",
@@ -76,6 +96,7 @@
     },
     {
       "name": "Deep cleaning",
+      "slug": "deep-cleaning",
       "icon": "deep-cleaning",
       "note": "A little extra attention.",
       "description": "For the corners, details, and hard-to-reach places that need a little more care. Make room for a thoroughly fresh start.",
@@ -87,6 +108,7 @@
     },
     {
       "name": "Move-in & move-out",
+      "slug": "move-in-move-out-cleaning",
       "icon": "move-in-out-cleaning",
       "note": "A clean slate for what’s next.",
       "description": "Close one chapter and begin another with a refreshed space. Cleaning for an empty home, before you settle in or after you move out.",
@@ -98,6 +120,7 @@
     },
     {
       "name": "Office cleaning",
+      "slug": "office-cleaning",
       "icon": "office-cleaning",
       "note": "Fresh spaces. Clear minds.",
       "description": "A welcoming workspace starts with the details. Bring a fresh feel to the shared spaces where your team spends its day.",
@@ -175,13 +198,16 @@
       "Service offerings and descriptions retained from the existing site as provisional copy.",
       "Description, owner bio, and story wording are draft marketing copy.",
       "Recurring service availability mentioned on the existing site remains unconfirmed.",
-      "Reviews are placeholder testimonials modeled on the design reference, with placeholder names; replace with real client reviews (with permission) before launch."
+      "Reviews are placeholder testimonials modeled on the design reference, with placeholder names; replace with real client reviews (with permission) before launch.",
+      "City and service landing-page copy in src/content/locations.ts and src/content/services-seo.ts is provisional marketing copy; it must not state addresses, prices, guarantees, insurance, or client counts."
     ],
     "pending": [
       "Instagram and Facebook URLs.",
       "Public address, if desired.",
       "Exact service radius origin and weekend availability.",
-      "Pricing and detailed service inclusions."
+      "Pricing and detailed service inclusions.",
+      "Recurring or scheduled service availability (scheduling.recurring stays null until confirmed).",
+      "Exact radius origin for serviceArea.geoMidpoint (currently an approximate Northern Virginia midpoint)."
     ],
     "editing": "Use null for missing contact details or links and omit those links from the UI until supplied. Do not invent reviews, credentials, guarantees, addresses, or prices."
   }

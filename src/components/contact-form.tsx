@@ -3,15 +3,12 @@
 import Image from "next/image";
 import business from "@/content/business.json";
 import Turnstile, { type TurnstileHandle } from "@/components/turnstile";
+import { formStrings } from "@/content/form-strings";
+import type { Locale } from "@/lib/i18n";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
 const services = business.services;
 type ContactMethod = "email" | "whatsapp" | "sms";
-const contactMethods = {
-  email: { label: "Email", button: "Send via email", hint: "Opens your email app with your message already written." },
-  whatsapp: { label: "WhatsApp", button: "Send on WhatsApp", hint: "Opens WhatsApp with your message already written." },
-  sms: { label: "Text message", button: "Send a text message", hint: "Opens your messaging app. Prefilled messages depend on your device." },
-};
 
 function subscribeToScreenSize(onChange: () => void) {
   const query = window.matchMedia("(min-width: 1001px)");
@@ -59,10 +56,20 @@ function Arrow() {
   return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 }
 
-export default function ContactForm() {
+type Props = {
+  locale?: Locale;
+  /** English business.json service name to pre-select. */
+  defaultService?: string;
+  /** Pre-filled "City or ZIP" value. */
+  defaultLocation?: string;
+};
+
+export default function ContactForm({ locale = "en", defaultService, defaultLocation = "" }: Props) {
+  const t = formStrings[locale];
+  const contactMethods = t.methods;
   const [name, setName] = useState("");
-  const [location, setLocation] = useState("");
-  const [service, setService] = useState(() => services.find((item) => item.icon === "residential-cleaning")?.name ?? "");
+  const [location, setLocation] = useState(defaultLocation);
+  const [service, setService] = useState(() => services.find((item) => item.name === defaultService)?.name ?? services.find((item) => item.icon === "residential-cleaning")?.name ?? "");
   const [message, setMessage] = useState("");
   const [chosenMethod, setChosenMethod] = useState<ContactMethod | null>(null);
   const [honeypot, setHoneypot] = useState("");
@@ -117,27 +124,27 @@ export default function ContactForm() {
     const elapsed = openedAt.current ? (Date.now() - openedAt.current) / 1000 : 0;
     if (elapsed < MIN_SECONDS_BEFORE_SEND && !warnedTooFast.current) {
       warnedTooFast.current = true;
-      return "That was quick! Give your message a once-over, then tap send again.";
+      return t.errors.tooFast;
     }
 
     // 4. Cloudflare Turnstile: the browser has to pass Cloudflare's bot check.
-    if (verification === "checking") return "One moment, the security check is finishing. Then tap send again.";
-    if (verification === "failed") return "The security check didn't pass. Please refresh the page and try again.";
-    if (verification !== "passed") return "Please complete the security check above, then tap send again.";
+    if (verification === "checking") return t.errors.checking;
+    if (verification === "failed") return t.errors.failed;
+    if (verification !== "passed") return t.errors.incomplete;
 
     // 5. Content: link dumps, gibberish, and oversized messages are classic spam.
     const cleanName = name.trim();
     if (!/[a-z\u00C0-\u024F]/i.test(cleanName) || countLinks(cleanName) > 0 || countLinks(location) > 0) {
-      return "Please enter your name without links or symbols.";
+      return t.errors.name;
     }
     if (message.length > MAX_MESSAGE_LENGTH) {
-      return `Please keep your message under ${MAX_MESSAGE_LENGTH} characters.`;
+      return t.errors.tooLong(MAX_MESSAGE_LENGTH);
     }
     if (countLinks(message) > MAX_LINKS_IN_MESSAGE) {
-      return "Please leave links out of your message. You can share them once we reply.";
+      return t.errors.links;
     }
     if (looksLikeGibberish(cleanName) || looksLikeGibberish(message)) {
-      return "Your message looks a little scrambled. Could you take another look?";
+      return t.errors.gibberish;
     }
     return null;
   }
@@ -148,13 +155,8 @@ export default function ContactForm() {
   const firstName = business.owner.name.split(" ")[0];
 
   function composeMessage() {
-    const lines = [`Hi ${firstName}, I'm ${name.trim()}.`];
-    const where = location.trim() ? ` in ${location.trim()}` : "";
-    if (service) lines.push(`I'm looking for ${service.toLowerCase()}${where}.`);
-    else if (where) lines.push(`I'm${where}.`);
-    if (message.trim()) lines.push(message.trim());
-    lines.push("Could I get a free estimate?");
-    return lines.join("\n\n");
+    const serviceLabel = service ? (t.serviceNames[service] ?? service) : "";
+    return t.compose({ firstName, name: name.trim(), location: location.trim(), service: serviceLabel, message: message.trim() });
   }
 
   function sendMessage(event: React.FormEvent<HTMLFormElement>) {
@@ -172,7 +174,7 @@ export default function ContactForm() {
     if (method === "whatsapp") {
       window.open(`${business.contact.whatsappUrl}?text=${body}`, "_blank", "noopener,noreferrer");
     } else if (method === "email") {
-      window.location.href = `mailto:${business.contact.email}?subject=${encodeURIComponent("Free cleaning estimate")}&body=${body}`;
+      window.location.href = `mailto:${business.contact.email}?subject=${encodeURIComponent(t.subject)}&body=${body}`;
     } else {
       const isAppleMobile = /iPad|iPhone|iPod/.test(navigator.userAgent)
         || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
@@ -183,48 +185,48 @@ export default function ContactForm() {
   return (
     <form data-reveal data-reveal-delay="100" className="contact-form" onSubmit={sendMessage} onPointerDown={noteHumanInteraction} onKeyDown={noteHumanInteraction} onInput={noteHumanInteraction}>
       <div className="form-intro">
-        <span className="form-to">To</span>
+        <span className="form-to">{t.to}</span>
         <span className="form-recipient"><strong>{business.owner.name}</strong> · {business.owner.role}</span>
       </div>
 
       {/* Honeypot: hidden from people and screen readers, tempting to bots. */}
       <div className="contact-extra" aria-hidden="true">
-        <label htmlFor="contact-website">Website</label>
+        <label htmlFor="contact-website">{t.website}</label>
         <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(event) => setHoneypot(event.target.value)} />
       </div>
 
       <div className="field-row">
         <div className="field">
-          <label htmlFor="contact-name">Your name</label>
+          <label htmlFor="contact-name">{t.name}</label>
           <input id="contact-name" name="name" type="text" autoComplete="given-name" required maxLength={80} value={name} onChange={(event) => setName(event.target.value)} />
         </div>
         <div className="field">
-          <label htmlFor="contact-location">City or ZIP</label>
-          <input id="contact-location" name="location" type="text" autoComplete="postal-code" inputMode="text" placeholder="Optional" maxLength={60} value={location} onChange={(event) => setLocation(event.target.value)} />
+          <label htmlFor="contact-location">{t.location}</label>
+          <input id="contact-location" name="location" type="text" autoComplete="postal-code" inputMode="text" placeholder={t.optional} maxLength={60} value={location} onChange={(event) => setLocation(event.target.value)} />
         </div>
       </div>
 
       <fieldset className="field service-choices">
-        <legend>What kind of clean?</legend>
+        <legend>{t.serviceLegend}</legend>
         <div className="service-choice-grid">
           {services.map((item) => (
             <label key={item.icon} className="service-choice">
               <input type="radio" name="service" value={item.name} checked={service === item.name} onChange={() => setService(item.name)} />
               <Image src={`/assets/icons/${item.icon}.svg`} alt="" width={28} height={28} />
-              <span>{item.name}</span>
+              <span>{t.serviceNames[item.name] ?? item.name}</span>
             </label>
           ))}
         </div>
       </fieldset>
 
       <div className="field">
-        <label htmlFor="contact-message">Tell {firstName} about your space</label>
-        <textarea id="contact-message" name="message" rows={4} maxLength={MAX_MESSAGE_LENGTH} placeholder="Rooms, bathrooms, pets, how often you’d like us to come — whatever helps." value={message} onChange={(event) => setMessage(event.target.value)} />
+        <label htmlFor="contact-message">{t.messageLabel}</label>
+        <textarea id="contact-message" name="message" rows={4} maxLength={MAX_MESSAGE_LENGTH} placeholder={t.messagePlaceholder} value={message} onChange={(event) => setMessage(event.target.value)} />
       </div>
 
       <div className="form-actions">
         <div className="field">
-          <label htmlFor="contact-method">Send using</label>
+          <label htmlFor="contact-method">{t.sendUsing}</label>
           <select id="contact-method" name="contactMethod" value={method} onChange={(event) => setChosenMethod(event.target.value as ContactMethod)} aria-describedby="contact-send-hint">
             {methodOrder.map((option) => <option key={option} value={option}>{contactMethods[option].label}</option>)}
           </select>
@@ -232,7 +234,7 @@ export default function ContactForm() {
         <Turnstile ref={turnstile} onToken={verifyToken} className="turnstile-slot" />
         <button className="button primary-button" type="submit">{method === "whatsapp" && <WhatsAppIcon />} {contactMethods[method].button} <Arrow /></button>
         <p className="form-status" role="status" aria-live="polite">{status}</p>
-        <p id="contact-send-hint">{contactMethods[method].hint} Nothing is sent until you tap send. Prefer to talk? <a href={business.contact.phoneUrl}>Call {business.contact.phone}</a>.</p>
+        <p id="contact-send-hint">{contactMethods[method].hint} {t.nothingSent} {t.preferToTalk} <a href={business.contact.phoneUrl}>{t.call} {business.contact.phone}</a>.</p>
       </div>
     </form>
   );

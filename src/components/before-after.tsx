@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { home } from "@/content/home";
+import type { Locale } from "@/lib/i18n";
 
 function subscribeToMotionPreference(onChange: () => void) {
   const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -13,34 +15,9 @@ function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-const rooms = [
-  {
-    name: "Kitchen",
-    title: "A fresh start at the heart of your home.",
-    description: "From busy countertops to a space ready for your next shared meal.",
-    image: "/assets/before-after/kitchen-before-after.webp",
-    alt: "Kitchen before and after cleaning: dishes and crumbs on the left, clear countertops and a tidy kitchen on the right.",
-    detail: "Countertops & everyday spaces",
-  },
-  {
-    name: "Bathroom",
-    title: "A little care. A whole new shine.",
-    description: "Clear glass, refreshed surfaces, and room to unwind at the end of the day.",
-    image: "/assets/before-after/bathroom-before-after.webp",
-    alt: "Bathroom before and after cleaning: spotted shower glass and cluttered vanity on the left, clear glass and clean surfaces on the right.",
-    detail: "Glass, tile & finishing touches",
-  },
-  {
-    name: "Living room",
-    title: "Less mess. More room to relax.",
-    description: "A reset for your favorite gathering place, from the coffee table to the cozy corners.",
-    image: "/assets/before-after/living-room-before-after.webp",
-    alt: "Living room before and after cleaning: a cluttered coffee table and rumpled sofa on the left, a tidy seating area on the right.",
-    detail: "Shared spaces & cozy corners",
-  },
-];
-
-export default function BeforeAfter() {
+export default function BeforeAfter({ locale }: { locale: Locale }) {
+  const copy = home[locale].work;
+  const rooms = copy.rooms;
   const [selected, setSelected] = useState(0);
   const [paused, setPaused] = useState<boolean | null>(null);
   const reducedMotion = useSyncExternalStore(
@@ -57,21 +34,21 @@ export default function BeforeAfter() {
       setSelected((current) => (current + 1) % rooms.length);
     }, 3000);
     return () => window.clearTimeout(timer);
-  }, [isPaused, selected]);
+  }, [isPaused, selected, rooms.length]);
 
   return (
     <section className="work-section" id="our-work" aria-labelledby="work-title">
       <div className="container">
         <div className="work-heading" data-reveal>
           <div>
-            <p className="eyebrow"><span aria-hidden="true">✧</span> Before & after</p>
-            <h2 id="work-title">The difference is<br /><em>in the details.</em></h2>
+            <p className="eyebrow"><span aria-hidden="true">✧</span> {copy.eyebrow}</p>
+            <h2 id="work-title">{copy.title[0]}<br /><em>{copy.title[1]}</em></h2>
           </div>
-          <p>A little attention goes a long way. Take a closer look at what a fresh start can feel like, one room at a time.</p>
+          <p>{copy.intro}</p>
         </div>
 
         <div className="room-controls" data-reveal>
-        <div className="room-selectors" role="group" aria-label="Choose a room to compare" onFocusCapture={() => setPaused(true)}>
+        <div className="room-selectors" role="group" aria-label={copy.chooseRoom} onFocusCapture={() => setPaused(true)}>
           {rooms.map((item, index) => (
             <button
               key={item.name}
@@ -89,8 +66,8 @@ export default function BeforeAfter() {
         <button
           className="rotation-control"
           onClick={() => setPaused(!isPaused)}
-          aria-label={isPaused ? "Play room slideshow" : "Pause room slideshow"}
-          title={isPaused ? "Play slideshow" : "Pause slideshow"}
+          aria-label={isPaused ? copy.play : copy.pause}
+          title={isPaused ? copy.play : copy.pause}
         >
           <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             {isPaused ? <path d="m6 3 11 7-11 7Z" /> : <path d="M5 3h3v14H5zm7 0h3v14h-3Z" />}
@@ -110,8 +87,8 @@ export default function BeforeAfter() {
               height={941}
               sizes="(max-width: 760px) calc(100vw - 48px), (max-width: 1360px) 90vw, 1232px"
             />)}
-            <span className="photo-label before-label">Before</span>
-            <span className="photo-label after-label"><span aria-hidden="true">✧</span> After</span>
+            <span className="photo-label before-label">{copy.before}</span>
+            <span className="photo-label after-label"><span aria-hidden="true">✧</span> {copy.after}</span>
             <div className="comparison-seam" aria-hidden="true" />
           </div>
           <figcaption className="work-caption" aria-live={isPaused ? "polite" : "off"} aria-atomic="true">
@@ -121,8 +98,8 @@ export default function BeforeAfter() {
         </figure>
 
         <div className="work-footer" data-reveal>
-          <p>Your home could be next.</p>
-          <a href="#services">Find the right clean for your space <span aria-hidden="true">↗</span></a>
+          <p>{copy.footer}</p>
+          <a href="#services">{copy.footerLink} <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>

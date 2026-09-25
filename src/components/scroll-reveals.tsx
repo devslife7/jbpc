@@ -1,9 +1,12 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 /** Progressive enhancement: content stays visible without JavaScript or motion. */
 export default function ScrollReveals() {
+  // Re-run after client-side navigation so freshly rendered [data-reveal] elements get observed.
+  const pathname = usePathname();
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (!("IntersectionObserver" in window)) return;
@@ -75,7 +78,7 @@ export default function ScrollReveals() {
       preference.removeEventListener("change", start);
       document.removeEventListener("focusin", revealFocused);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
