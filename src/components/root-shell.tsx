@@ -1,3 +1,5 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 import type { ReactNode } from "react";
 import JsonLd from "@/components/json-ld";
 import ScrollReveals from "@/components/scroll-reveals";
@@ -7,6 +9,8 @@ import { businessGraph } from "@/lib/structured-data";
 import "@/app/globals.css";
 import "@/app/pages.css";
 
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
 /** Shared <html>/<body> used by both root layouts (English at "/", Spanish at "/es"). */
 export default function RootShell({ locale, children }: { locale: Locale; children: ReactNode }) {
   return (
@@ -15,7 +19,9 @@ export default function RootShell({ locale, children }: { locale: Locale; childr
         <JsonLd data={businessGraph(locale)} />
         <ScrollReveals />
         {children}
+        <Analytics />
       </body>
+      {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
     </html>
   );
 }
