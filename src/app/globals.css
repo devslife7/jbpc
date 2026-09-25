@@ -177,7 +177,7 @@ button, a { transition: color .2s, background .2s, transform .2s, box-shadow .2s
 }
 
 /* Reviews */
-.reviews-section { padding-block: 84px 88px; border-top: 1px solid #f1ebf5; background: linear-gradient(#faf7fdf2, #faf7fdf2), url("/assets/background-texture.png") center / 720px; }
+.reviews-section { padding-block: 84px 88px; border-top: 1px solid #f1ebf5; background: linear-gradient(#faf7fdf2, #faf7fdf2), url("/assets/background-texture.webp") center / 720px; }
 .reviews-heading { text-align: center; margin-bottom: 44px; }
 .reviews-heading .eyebrow { justify-content: center; margin-bottom: 18px; }
 .reviews-heading h2 { font-size: clamp(34px, 3.4vw, 46px); line-height: 1.15; letter-spacing: -.05em; font-weight: 500; }

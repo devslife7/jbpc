@@ -60,7 +60,7 @@ export default function Home() {
       <main id="main">
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero-photo">
-            <Image src="/assets/hero-cleaning-branded.png" alt="A smiling cleaner looking at the camera, wearing a purple polo with the J&B Premier Cleaning logo on her left chest while wiping a kitchen countertop" fill sizes="(max-width: 760px) 200vw, 100vw" preload />
+            <Image src="/assets/hero-cleaning-branded.webp" alt="A smiling cleaner looking at the camera, wearing a purple polo with the J&B Premier Cleaning logo on her left chest while wiping a kitchen countertop" fill sizes="(max-width: 760px) 200vw, 100vw" preload />
           </div>
           <div className="hero-wash" />
           <div className="container hero-inner">
@@ -142,7 +142,7 @@ export default function Home() {
               <span className="story-dots story-dots-top" aria-hidden="true" />
               <span className="story-dots story-dots-bottom" aria-hidden="true" />
               <div className="story-blob">
-                <Image src="/assets/story-owner-detailed.png" alt="A smiling J&B Premier Cleaning professional posing with her hands gently clasped" fill quality={95} sizes="(max-width: 760px) 100vw, 550px" />
+                <Image src="/assets/story-owner-detailed.webp" alt="A smiling J&B Premier Cleaning professional posing with her hands gently clasped" fill quality={95} sizes="(max-width: 760px) 100vw, 550px" />
               </div>
             </div>
             <div className="story-copy" data-reveal data-reveal-delay="120">
@@ -157,7 +157,7 @@ export default function Home() {
         <section className="booking-section" aria-labelledby="booking-title">
           <div className="booking-banner">
             <div className="booking-art" aria-hidden="true">
-              <Image src="/assets/booking-cleaning.png" alt="" fill sizes="(max-width: 760px) 100vw, 60vw" />
+              <Image src="/assets/booking-cleaning.webp" alt="" fill sizes="(max-width: 760px) 100vw, 60vw" />
             </div>
             <div className="container booking-copy" data-reveal>
               <h2 id="booking-title">Need a Cleaning Partner<br className="booking-title-break" /> You Can Count On?</h2>
