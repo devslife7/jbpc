@@ -5,7 +5,7 @@ import { localizePath } from "@/lib/routes";
 import { absoluteUrl, isProductionSite, siteUrl } from "@/lib/site";
 
 /** Bump when page content changes materially; keeps sitemap lastModified stable between deploys. */
-export const CONTENT_UPDATED = "2026-09-11";
+export const CONTENT_UPDATED = "2026-09-30";
 
 export function languageAlternates(path: string) {
   const en = absoluteUrl(localizePath(path, "en"));

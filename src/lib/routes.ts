@@ -8,6 +8,9 @@ export function localizePath(path: string, locale: Locale): string {
   return path === "/" ? "/es" : `/es${path}`;
 }
 
+export const storyPath = "/our-story";
+export const contactPath = "/contact";
+
 export const servicesIndexPath = "/services";
 export const areasIndexPath = "/areas";
 export const servicePath = (slug: string) => `${servicesIndexPath}/${slug}`;
@@ -17,6 +20,8 @@ export const cityPath = (slug: string) => `${areasIndexPath}/${slug}`;
 export function allPaths(): string[] {
   return [
     "/",
+    storyPath,
+    contactPath,
     servicesIndexPath,
     ...servicesSeo.map((service) => servicePath(service.slug)),
     areasIndexPath,

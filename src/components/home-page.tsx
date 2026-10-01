@@ -5,10 +5,11 @@ import BookNowLink from "@/components/book-now-link";
 import ContactSection from "@/components/contact-section";
 import FaqSection from "@/components/faq-section";
 import HighlightsMarquee from "@/components/highlights-marquee";
-import { Arrow, PhoneIcon, Sparkle } from "@/components/icons";
+import { Arrow, PhoneIcon } from "@/components/icons";
 import ServicesSection from "@/components/services-section";
 import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
+import StorySection from "@/components/story-section";
 import Testimonials from "@/components/testimonials";
 import business from "@/content/business.json";
 import { homeFaq } from "@/content/faqs";
@@ -56,23 +57,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         <BeforeAfter locale={locale} />
         <ServicesSection locale={locale} />
 
-        <section className="story-section" id="our-story" aria-labelledby="story-title">
-          <div className="container story-layout">
-            <div className="story-photo" data-reveal data-reveal-delay="0">
-              <span className="story-dots story-dots-top" aria-hidden="true" />
-              <span className="story-dots story-dots-bottom" aria-hidden="true" />
-              <div className="story-blob">
-                <Image src="/assets/story-owner-detailed.webp" alt={h.story.imageAlt} fill sizes="(max-width: 760px) 100vw, 550px" />
-              </div>
-            </div>
-            <div className="story-copy" data-reveal data-reveal-delay="120">
-              <p className="eyebrow"><Sparkle /> {h.story.eyebrow}</p>
-              <h2 id="story-title">{h.story.title}</h2>
-              {h.story.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-              <div className="story-signoff"><Sparkle /><span>{h.story.signoff}</span></div>
-            </div>
-          </div>
-        </section>
+        <StorySection locale={locale} />
 
         {/* Testimonials are placeholders until real reviews arrive; they are not machine-translated. */}
         {locale === "en" ? <Testimonials /> : null}

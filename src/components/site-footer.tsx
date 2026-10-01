@@ -8,7 +8,7 @@ import { cities, citiesByState, type StateCode } from "@/content/locations";
 import { servicesSeo } from "@/content/services-seo";
 import { ui } from "@/content/ui-strings";
 import { type Locale, htmlLang, otherLocale } from "@/lib/i18n";
-import { areasIndexPath, cityPath, localizePath, servicePath, servicesIndexPath } from "@/lib/routes";
+import { areasIndexPath, cityPath, contactPath, storyPath, localizePath, servicePath, servicesIndexPath } from "@/lib/routes";
 
 const stateOrder: StateCode[] = ["VA", "DC", "MD"];
 
@@ -67,7 +67,8 @@ export default function SiteFooter({ locale, path }: { locale: Locale; path: str
 
         <div className="footer-action">
           <p>{s.footer.ready}</p>
-          <Link className="button footer-button" href={`${home}#contact`}>{s.footer.bookYourClean} <Arrow diagonal /></Link>
+          <Link className="button footer-button" href={localizePath(contactPath, locale)}>{s.footer.bookYourClean} <Arrow diagonal /></Link>
+          <Link className="footer-lang" href={localizePath(storyPath, locale)}>{s.nav.story}</Link>
           <Link className="footer-lang" href={localizePath(path, other)} hrefLang={htmlLang[other]} lang={htmlLang[other]}>{s.languageToggle.switchTo}</Link>
         </div>
       </div>

@@ -7,13 +7,15 @@ import type { Locale } from "@/lib/i18n";
 
 type Props = {
   locale: Locale;
+  headingLevel?: "h1" | "h2";
   /** English business.json service name to pre-select, e.g. "Deep cleaning". */
   defaultService?: string;
   /** Pre-filled "City or ZIP" value, e.g. "Arlington, VA". */
   defaultLocation?: string;
 };
 
-export default function ContactSection({ locale, defaultService, defaultLocation }: Props) {
+export default function ContactSection({ locale, defaultService, defaultLocation, headingLevel = "h2" }: Props) {
+  const Heading = headingLevel;
   const c = home[locale].contact;
   const f = facts[locale];
   const [emailUser, emailDomain] = business.contact.email.split("@");
@@ -23,7 +25,7 @@ export default function ContactSection({ locale, defaultService, defaultLocation
       <div className="container contact-layout">
         <div className="contact-copy" data-reveal data-reveal-delay="0">
           <p className="eyebrow"><Sparkle /> {c.eyebrow}</p>
-          <h2 id="contact-title">{c.title[0]}<br /><em>{c.title[1]}</em></h2>
+          <Heading id="contact-title">{c.title[0]}<br /><em>{c.title[1]}</em></Heading>
           <p>{c.body}</p>
           <a className="contact-phone" href={business.contact.phoneUrl}>{business.contact.phone}</a>
           <dl className="contact-facts">

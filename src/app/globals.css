@@ -156,7 +156,7 @@ button, a { transition: color .2s, background .2s, transform .2s, box-shadow .2s
 .story-dots-top { top: -5%; right: -4%; width: 48%; }
 .story-dots-bottom { bottom: 3%; left: -7%; width: 36%; }
 .story-copy .eyebrow { margin-bottom: 21px; }
-.story-copy h2 { margin-bottom: 28px; font-size: clamp(36px, 3.6vw, 50px); line-height: 1.15; letter-spacing: -.05em; font-weight: 500; }
+.story-copy :is(h1, h2) { margin-bottom: 28px; font-size: clamp(36px, 3.6vw, 50px); line-height: 1.15; letter-spacing: -.05em; font-weight: 500; }
 .story-copy > p:not(.eyebrow) { margin-top: 18px; color: var(--muted); font-size: 15px; line-height: 1.85; }
 .story-signoff { display: flex; align-items: center; gap: 14px; margin-top: 29px; color: var(--purple); font-size: 12px; font-weight: 550; }
 .story-signoff svg { flex-shrink: 0; }
@@ -172,7 +172,7 @@ button, a { transition: color .2s, background .2s, transform .2s, box-shadow .2s
   .story-dots { opacity: .4; background-size: 11px 11px; }
   .story-dots-top { top: -2%; right: 0; width: 42%; }
   .story-dots-bottom { bottom: 2%; left: 0; width: 32%; }
-  .story-copy h2 { font-size: clamp(34px, 7vw, 46px); }
+  .story-copy :is(h1, h2) { font-size: clamp(34px, 7vw, 46px); }
   .story-copy > p:not(.eyebrow) { font-size: 14px; }
 }
 
@@ -298,8 +298,8 @@ button, a { transition: color .2s, background .2s, transform .2s, box-shadow .2s
 /* Contact */
 .contact-section { padding-block: 96px 104px; background: var(--background); }
 .contact-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, 560px); gap: clamp(48px, 8vw, 120px); align-items: start; }
-.contact-copy h2 { margin-top: 18px; font-size: clamp(34px, 4vw, 56px); line-height: 1.08; letter-spacing: -.045em; font-weight: 600; }
-.contact-copy h2 em { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; color: var(--purple); }
+.contact-copy :is(h1, h2) { margin-top: 18px; font-size: clamp(34px, 4vw, 56px); line-height: 1.08; letter-spacing: -.045em; font-weight: 600; }
+.contact-copy :is(h1, h2) em { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; color: var(--purple); }
 .contact-copy > p:not(.eyebrow):not(.contact-email) { max-width: 440px; margin-top: 24px; color: #625967; line-height: 1.75; }
 .contact-phone { display: inline-block; margin-top: 30px; font-size: clamp(26px, 2.6vw, 34px); font-weight: 600; letter-spacing: -.03em; color: var(--purple); text-decoration: underline; text-decoration-color: #cbb6e0; text-decoration-thickness: 2px; text-underline-offset: 7px; }
 .contact-phone:hover { text-decoration-color: var(--purple); }
@@ -350,7 +350,7 @@ button, a { transition: color .2s, background .2s, transform .2s, box-shadow .2s
 }
 @media (max-width: 760px) {
   .contact-section { padding-block: 60px 72px; }
-  .contact-copy h2 { font-size: clamp(34px, 7vw, 46px); }
+  .contact-copy :is(h1, h2) { font-size: clamp(34px, 7vw, 46px); }
   .contact-facts > div { grid-template-columns: 96px 1fr; gap: 14px; font-size: 13px; }
   .contact-form { padding: 24px 20px 22px; gap: 18px; border-radius: 14px; }
   .field-row { grid-template-columns: 1fr; }

@@ -5,7 +5,7 @@ import { Arrow } from "@/components/icons";
 import business from "@/content/business.json";
 import { ui } from "@/content/ui-strings";
 import { type Locale, htmlLang, otherLocale } from "@/lib/i18n";
-import { areasIndexPath, localizePath, servicesIndexPath } from "@/lib/routes";
+import { areasIndexPath, contactPath, localizePath, servicesIndexPath, storyPath } from "@/lib/routes";
 
 /** @param path Canonical (English) path of the current page, used by the language toggle. */
 export default function SiteHeader({ locale, path }: { locale: Locale; path: string }) {
@@ -25,8 +25,8 @@ export default function SiteHeader({ locale, path }: { locale: Locale; path: str
             <Link href={localizePath(servicesIndexPath, locale)}>{s.nav.services}</Link>
             <Link href={localizePath(areasIndexPath, locale)}>{s.nav.areas}</Link>
             <Link className="work-nav-link" href={`${home}#our-work`}>{s.nav.work} <Arrow diagonal /></Link>
-            <Link href={`${home}#our-story`}>{s.nav.story}</Link>
-            <a href="#contact">{s.nav.contact}</a>
+            <Link href={localizePath(storyPath, locale)}>{s.nav.story}</Link>
+            <Link href={localizePath(contactPath, locale)}>{s.nav.contact}</Link>
           </nav>
           <div className="header-actions">
             <Link className="lang-toggle" href={localizePath(path, other)} hrefLang={htmlLang[other]} lang={htmlLang[other]} aria-label={`${s.languageToggle.label}: ${s.languageToggle.switchTo}`}>
