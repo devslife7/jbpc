@@ -6,14 +6,16 @@
 
 /* Hero kicker: keyword phrase inside the H1, styled like an eyebrow */
 .hero-kicker { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; font-family: var(--font-geist-sans), Arial, sans-serif; font-size: 11px; line-height: 1.5; letter-spacing: .17em; text-transform: uppercase; font-weight: 650; color: var(--purple); }
-.hero-kicker::before { content: ""; width: 34px; height: 1px; background: var(--purple); opacity: .6; }
 .hero-area-link { color: var(--purple); font-weight: 550; text-decoration: underline; text-decoration-color: #cbb6e0; text-underline-offset: 4px; }
 .hero-area-link:hover { text-decoration-color: var(--purple); }
 
 /* Header: language toggle next to the CTA */
 .header-actions { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
-.lang-toggle { display: inline-flex; align-items: center; padding: 9px 12px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: .04em; color: var(--muted); background: #fff; }
-.lang-toggle:hover { color: var(--purple); border-color: #d6c5e6; background: #f5effb; }
+.header-actions .lang-toggle, .header-actions .header-cta, .hero-actions .button { display: inline-flex; align-items: center; justify-content: center; height: 48px; gap: 9px; padding: 0 20px; border-width: 1px; border-style: solid; border-radius: 999px; font-size: 14px; line-height: 20px; font-weight: 600; letter-spacing: 0; white-space: nowrap; box-shadow: none; }
+.hero-actions .button { height: 60px; padding-inline: 24px; gap: 10px; font-size: 15px; line-height: 22px; }
+.hero-actions .button svg { width: 18px; height: 18px; }
+.header-actions .lang-toggle, .hero-actions .call-button { color: var(--muted); border-color: var(--line); background: #fff; }
+.lang-toggle:hover, .hero-actions .call-button:hover { color: var(--purple); border-color: #d6c5e6; background: #f5effb; }
 
 /* Footer link hub and NAP block */
 .footer-grid { display: grid; grid-template-columns: 1.35fr .8fr 1.6fr .9fr; gap: 48px; align-items: start; padding-block: 58px 50px; }
@@ -175,8 +177,9 @@
 /* Header fit: five nav links plus the language toggle need tighter spacing on tablets and phones */
 .desktop-nav a { white-space: nowrap; }
 @media (max-width: 1100px) {
-  .desktop-nav { gap: 20px; font-size: 13px; }
+  .desktop-nav { gap: 20px; font-size: 14px; }
   .header-actions { gap: 10px; }
+  .header-phone-number { display: none; }
 }
 @media (max-width: 900px) {
   .desktop-nav .work-nav-link { display: none; }
@@ -185,8 +188,9 @@
   .header-inner { gap: 10px; }
   .header-inner .brand { flex-shrink: 1; min-width: 130px; }
   .header-actions { gap: 8px; }
-  .lang-toggle { padding: 8px 9px; font-size: 11px; }
+  .header-actions .lang-toggle, .header-actions .header-cta { height: 44px; padding-inline: 12px; gap: 7px; font-size: 12px; }
+  .hero-actions .button { height: 52px; padding-inline: 20px; gap: 10px; font-size: 15px; }
 }
 @media (max-width: 380px) {
-  .lang-toggle { padding: 7px 8px; font-size: 10px; }
+  .header-actions .lang-toggle, .header-actions .header-cta { padding-inline: 9px; gap: 6px; }
 }

@@ -28,8 +28,11 @@ export default function InnerHero({ locale, crumbs, eyebrow, title, intro, child
           {intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </div>
         <div className="hero-actions" data-reveal data-reveal-delay="180">
-          <BookNowLink className="button primary-button">{s.cta.bookNow} <Arrow /></BookNowLink>
-          <a className="button call-button" href={business.contact.phoneUrl}><PhoneIcon /> {s.cta.call} {business.contact.phone}</a>
+          <a className="button primary-button phone-cta" href={business.contact.phoneUrl}>
+            <PhoneIcon />
+            <span>{s.cta.call} {business.contact.phone}</span>
+          </a>
+          <BookNowLink className="button call-button">{s.cta.bookNow} <Arrow /></BookNowLink>
         </div>
         {children}
       </div>

@@ -5,7 +5,7 @@ import type { Localized } from "@/lib/i18n";
 export interface HomeCopy {
   metaTitle: string;
   metaDescription: string;
-  hero: { kicker: string; title: [string, string]; description: string; areaLink: string; careNote: string; imageAlt: string };
+  hero: { kicker: string; title: [string, string]; description: string; careNote: string; imageAlt: string };
   highlights: { label: string; note: string }[];
   highlightsToggle: { pause: string; resume: string; label: string };
   work: {
@@ -25,9 +25,8 @@ export const home: Localized<HomeCopy> = {
     metaDescription: "Owner-led house, office, deep and move-in/move-out cleaning across Northern Virginia, Washington, DC and Maryland. Bilingual service and free estimates. Call 703-861-8358.",
     hero: {
       kicker: "House & office cleaning in Northern Virginia",
-      title: ["A cleaner home.", "A lighter life."],
+      title: ["We clean your home.", "You enjoy your time."],
       description: "Leave the cleaning to us. Come home to a space that feels fresh, cared for, and completely yours.",
-      areaLink: "Serving Arlington, Alexandria, Fairfax and the DMV, in English or Spanish.",
       careNote: "Thoughtful cleaning. A personal touch.",
       imageAlt: "A smiling cleaner looking at the camera, wearing a purple polo with the J&B Premier Cleaning logo on her left chest while wiping a kitchen countertop",
     },
@@ -90,9 +89,8 @@ export const home: Localized<HomeCopy> = {
     metaDescription: "Limpieza de casas, oficinas, limpieza profunda y de mudanza en el norte de Virginia, Washington, DC y Maryland, con atención directa de la dueña. Servicio en español y presupuesto gratis. Llame al 703-861-8358.",
     hero: {
       kicker: "Limpieza de casas y oficinas en el norte de Virginia",
-      title: ["Un hogar más limpio.", "Una vida más ligera."],
+      title: ["Limpiamos su hogar.", "Disfrute de su tiempo."],
       description: "Déjenos la limpieza a nosotros. Llegue a un hogar que se sienta fresco, cuidado y completamente suyo.",
-      areaLink: "Atendemos Arlington, Alexandria, Fairfax y todo el DMV, en español o inglés.",
       careNote: "Limpieza con cuidado. Un toque personal.",
       imageAlt: "Una limpiadora sonriente mira a la cámara con una camisa morada con el logotipo de J&B Premier Cleaning mientras limpia la encimera de una cocina",
     },

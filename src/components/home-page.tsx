@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import BeforeAfter from "@/components/before-after";
 import BookNowLink from "@/components/book-now-link";
 import ContactSection from "@/components/contact-section";
@@ -13,13 +12,11 @@ import StorySection from "@/components/story-section";
 import Testimonials from "@/components/testimonials";
 import business from "@/content/business.json";
 import { homeFaq } from "@/content/faqs";
-import { facts, home } from "@/content/home";
+import { home } from "@/content/home";
 import type { Locale } from "@/lib/i18n";
-import { areasIndexPath, localizePath } from "@/lib/routes";
 
 export default function HomePage({ locale }: { locale: Locale }) {
   const h = home[locale];
-  const f = facts[locale];
 
   return (
     <>
@@ -34,21 +31,18 @@ export default function HomePage({ locale }: { locale: Locale }) {
             <div className="hero-copy">
               <h1 id="hero-title" data-reveal>
                 <span className="hero-kicker">{h.hero.kicker}</span>
-                {h.hero.title[0]}<br /><em>{h.hero.title[1]}</em>
+                <span className="hero-title-opening">{h.hero.title[0]}</span><br /><em>{h.hero.title[1]}</em>
               </h1>
               <p className="hero-description" data-reveal data-reveal-delay="80">
-                {h.hero.description} <Link className="hero-area-link" href={localizePath(areasIndexPath, locale)}>{h.hero.areaLink}</Link>
+                {h.hero.description}
               </p>
               <div className="hero-actions" data-reveal data-reveal-delay="160">
-                <BookNowLink className="button primary-button">{locale === "es" ? "Reservar" : "Book now"} <Arrow /></BookNowLink>
-                <a className="button call-button" href={business.contact.phoneUrl}><PhoneIcon /> {locale === "es" ? "Llamar al" : "Call"} {business.contact.phone}</a>
+                <a className="button primary-button phone-cta" href={business.contact.phoneUrl}>
+                  <PhoneIcon />
+                  <span>{locale === "es" ? "Llamar al" : "Call"} {business.contact.phone}</span>
+                </a>
+                <BookNowLink className="button call-button">{locale === "es" ? "Reservar" : "Book now"} <Arrow /></BookNowLink>
               </div>
-              <ul className="care-note" data-reveal data-reveal-delay="240">
-                <li><span className="check-icon" aria-hidden="true">✓</span> {h.hero.careNote}</li>
-                {[f.experience, f.estimates].map((note) => (
-                  <li key={note}><span className="check-icon" aria-hidden="true">✓</span> {note}</li>
-                ))}
-              </ul>
             </div>
           </div>
         </section>
