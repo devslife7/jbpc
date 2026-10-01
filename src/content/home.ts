@@ -33,6 +33,7 @@ export const home: Localized<HomeCopy> = {
     },
     highlights: [
       { label: business.experience, note: `Owner-led by ${business.owner.name}.` },
+      { label: `Around ${business.recurringClients.approximateCount} recurring clients`, note: "Personal care, visit after visit." },
       { label: business.serviceArea.baseRegion, note: `Serving the DMV within ${business.serviceArea.radiusMiles} miles.` },
       { label: business.languages.join(" & "), note: "Bilingual service, your choice." },
       { label: business.estimates.label, note: "No obligation. Call or WhatsApp." },
@@ -64,7 +65,10 @@ export const home: Localized<HomeCopy> = {
     story: {
       eyebrow: "Our story",
       title: "Built on honest work.",
-      paragraphs: business.story.paragraphs,
+      paragraphs: [
+        ...business.story.paragraphs,
+        `We currently care for around ${business.recurringClients.approximateCount} recurring clients.`,
+      ],
       signoff: business.story.signoff,
       imageAlt: "A smiling J&B Premier Cleaning professional posing with her hands gently clasped",
     },
@@ -94,6 +98,7 @@ export const home: Localized<HomeCopy> = {
     },
     highlights: [
       { label: "Más de 30 años de experiencia", note: `Atención directa de ${business.owner.name}.` },
+      { label: `Unos ${business.recurringClients.approximateCount} clientes recurrentes`, note: "Atención personal en cada visita." },
       { label: "Norte de Virginia", note: `Atendemos el DMV hasta ${business.serviceArea.radiusMiles} millas.` },
       { label: "Español e inglés", note: "Servicio bilingüe, usted elige." },
       { label: "Presupuestos gratis", note: "Sin compromiso. Llame o escriba por WhatsApp." },
@@ -128,6 +133,7 @@ export const home: Localized<HomeCopy> = {
       paragraphs: [
         `Con ${business.owner.name} al frente, J&B Premier Cleaning lleva más de 30 años de experiencia a hogares y oficinas de todo el DMV, hasta 50 millas del norte de Virginia.`,
         "Cuidamos su espacio con atención al detalle, comunicación clara y un toque personal, con servicio en español e inglés.",
+        `Actualmente atendemos a unos ${business.recurringClients.approximateCount} clientes recurrentes.`,
       ],
       signoff: "Gente honesta. Trabajo duro. Un toque personal.",
       imageAlt: "Una profesional sonriente de J&B Premier Cleaning posa con las manos suavemente entrelazadas",

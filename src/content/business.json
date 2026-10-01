@@ -17,6 +17,9 @@
     "bio": "Bertha Blanco owns J&B Premier Cleaning, a business with over 30 years of operation. Contact her directly by phone or WhatsApp for a free estimate."
   },
   "experience": "Over 30 years in business",
+  "recurringClients": {
+    "approximateCount": 50
+  },
   "contact": {
     "phone": "703-861-8358",
     "phoneInternational": "+17038618358",
@@ -186,6 +189,7 @@
     "confirmed": [
       "Owner: Bertha Blanco.",
       "Business has been running for over 30 years; an exact founding year has not been supplied.",
+      "The business currently has about 50 recurring clients.",
       "Main owner phone: 703-861-8358. Contact by call or WhatsApp.",
       "Contact email: jbpremier75@gmail.com.",
       "Service area: DMV within 50 miles of Northern Virginia.",
@@ -197,7 +201,6 @@
       "Business name and LLC suffix retained from the existing site; confirm the exact legal name.",
       "Service offerings and descriptions retained from the existing site as provisional copy.",
       "Description, owner bio, and story wording are draft marketing copy.",
-      "Recurring service availability mentioned on the existing site remains unconfirmed.",
       "Reviews are placeholder testimonials modeled on the design reference, with placeholder names; replace with real client reviews (with permission) before launch.",
       "City and service landing-page copy in src/content/locations.ts and src/content/services-seo.ts is provisional marketing copy; it must not state addresses, prices, guarantees, insurance, or client counts."
     ],
@@ -206,7 +209,7 @@
       "Public address, if desired.",
       "Exact service radius origin and weekend availability.",
       "Pricing and detailed service inclusions.",
-      "Recurring or scheduled service availability (scheduling.recurring stays null until confirmed).",
+      "Availability for new recurring clients and specific scheduling options (scheduling.recurring stays null until confirmed).",
       "Exact radius origin for serviceArea.geoMidpoint (currently an approximate Northern Virginia midpoint)."
     ],
     "editing": "Use null for missing contact details or links and omit those links from the UI until supplied. Do not invent reviews, credentials, guarantees, addresses, or prices."
