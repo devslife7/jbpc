@@ -9,7 +9,7 @@ import { businessGraph } from "@/lib/structured-data";
 import "@/app/globals.css";
 import "@/app/pages.css";
 
-const gaId = process.env.NEXT_PUBLIC_GA_ID;
+const gaId = process.env.NEXT_PUBLIC_GA_ID || "G-0H24D1L8V1";
 
 /** Shared <html>/<body> used by both root layouts (English at "/", Spanish at "/es"). */
 export default function RootShell({ locale, children }: { locale: Locale; children: ReactNode }) {
@@ -21,7 +21,7 @@ export default function RootShell({ locale, children }: { locale: Locale; childr
         {children}
         <Analytics />
       </body>
-      {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
+      <GoogleAnalytics gaId={gaId} />
     </html>
   );
 }
