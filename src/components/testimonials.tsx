@@ -1,6 +1,7 @@
 "use client";
 
 import business from "@/content/business.json";
+import { Arrow } from "@/components/icons";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const reviews = business.reviews;
@@ -79,6 +80,23 @@ export default function Testimonials() {
             ))}
           </div>
         </div>
+
+        {business.google.reviewUrl || business.google.profileUrl ? (
+          <div className="reviews-actions" data-reveal>
+            {business.google.reviewUrl ? (
+              <a className="button primary-button" href={business.google.reviewUrl} target="_blank" rel="noopener noreferrer">
+                Leave a Google review <Arrow diagonal />
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            ) : null}
+            {business.google.profileUrl ? (
+              <a className="reviews-google-link" href={business.google.profileUrl} target="_blank" rel="noopener noreferrer">
+                View us on Google <Arrow diagonal />
+                <span className="sr-only"> (opens in a new tab)</span>
+              </a>
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </section>
   );

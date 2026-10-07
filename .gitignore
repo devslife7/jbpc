@@ -24,6 +24,7 @@
 .DS_Store
 *.pem
 /_assets/
+/mockups/
 
 # debug
 npm-debug.log*

@@ -33,6 +33,10 @@
     "emailUrl": "mailto:jbpremier75@gmail.com",
     "publicAddress": null
   },
+  "google": {
+    "profileUrl": "https://g.page/r/CbalBlgJEaCoEAI",
+    "reviewUrl": "https://g.page/r/CbalBlgJEaCoEAI/review"
+  },
   "social": {
     "instagram": {
       "url": null,
@@ -192,6 +196,7 @@
       "The business currently has about 50 recurring clients.",
       "Main owner phone: 703-861-8358. Contact by call or WhatsApp.",
       "Contact email: jbpremier75@gmail.com.",
+      "Google review URL supplied by the user; matching business-profile URL verified from the same Google short link.",
       "Service area: DMV within 50 miles of Northern Virginia.",
       "English and Spanish speaking.",
       "Free estimates.",

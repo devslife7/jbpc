@@ -219,6 +219,11 @@ button, a { transition: color .2s, background .2s, transform .2s, box-shadow .2s
 .reviews-dot::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #cfc6d6; transition: background .2s, transform .2s; }
 .reviews-dot:hover::before { background: #a98bc6; }
 .reviews-dot.is-active::before { background: var(--purple); transform: scale(1.25); }
+.reviews-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 28px; margin-top: 32px; }
+.reviews-actions .button { gap: 10px; white-space: normal; text-align: center; }
+.reviews-actions svg { flex-shrink: 0; width: 18px; height: 18px; }
+.reviews-google-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; color: var(--purple); font-size: 14px; font-weight: 550; text-decoration: underline; text-underline-offset: 4px; }
+.reviews-google-link:hover { color: #381165; }
 @media (prefers-reduced-motion: reduce) {
   .reviews-track { scroll-behavior: auto; }
   .review, .review:hover { transform: none; }
